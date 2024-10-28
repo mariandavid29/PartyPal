@@ -1,14 +1,12 @@
-import Navigation from '@/components/server/navigation';
-import UserAvatar from '@/components/client/userAvatar';
-import UserAvatarSkeleton from '@/components/skeleton/userAvatarSkeleton';
-import { Suspense } from 'react';
+import NewPartyForm from '@/components/client/newPartyForm';
 
-export default async function Dashboard() {
+export default async function DashboardPage() {
   return (
-    <Navigation>
-      <Suspense fallback={<UserAvatarSkeleton />}>
-        <UserAvatar />
-      </Suspense>
-    </Navigation>
+    <section className='mt-10 sm:mt-20 lg:mt-28'>
+      <h1 className='text-center text-3xl font-black sm:text-4xl lg:text-5xl'>
+        Party Coming Up?
+      </h1>
+      <NewPartyForm />
+    </section>
   );
 }

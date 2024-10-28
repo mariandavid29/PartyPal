@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '../ui/button';
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -8,10 +9,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { LogOut, ChevronDown } from 'lucide-react';
+import { LogOut, ChevronDown, UserRoundPlus } from 'lucide-react';
 
 import { auth } from '@/auth';
 import LogoutBtn from './logoutBtn';
+import Link from 'next/link';
 
 export default async function UserAvatar() {
   const {
@@ -32,18 +34,28 @@ export default async function UserAvatar() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         sideOffset={8}
-        className='mr-3 w-48 sm:mr-0 sm:w-56'
+        className='mr-3 w-48 sm:mr-0 sm:w-56 md:w-60'
       >
-        <DropdownMenuLabel className='hidden sm:block'>
+        <DropdownMenuLabel className='hidden sm:block sm:text-lg'>
           My Account
         </DropdownMenuLabel>
         <DropdownMenuLabel className='sm:hidden'>
           <p>{name}</p>
         </DropdownMenuLabel>
-
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut />
+          <UserRoundPlus />
+          <Button
+            asChild
+            size='sm'
+            variant='link'
+            color=''
+          >
+            <Link href='/dashboard/friends'>Friends</Link>
+          </Button>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <LogOut className='text-red-600' />
           <LogoutBtn />
         </DropdownMenuItem>
       </DropdownMenuContent>

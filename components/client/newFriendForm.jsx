@@ -4,15 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -34,38 +31,58 @@ export default function NewFriendForm() {
     },
   });
 
-  function onSubmit(data) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  async function onSubmit(values) {
+    try {
+      const res = await fetch('/api/friends', {
+        method: 'POST',
+        body: JSON.stringify(values),
+      });
+
+      const jsonRes = await res.json();
+      console.log(jsonRes);
+
+      if (res.status === 201) {
+        console.log('salut');
+        console.log(jsonRes.data.friendRequest);
+      } else if (res.status === 200) {
+        console.log('salut din else if');
+        console.log(jsonRes.data.newFriend);
+      } else {
+        console.log('salut din else');
+        console.log(jsonRes.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='w-2/3 space-y-6'
+        className='flex w-[350px] items-start justify-between gap-3'
       >
         <FormField
           control={form.control}
           name='email'
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
+            <FormItem className='w-full'>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder='Add a new friend'
+                />
               </FormControl>
-              <FormDescription>Add friends by email.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type='submit'>Add</Button>
+        <Button
+          size='lg'
+          type='submit'
+        >
+          Add
+        </Button>
       </form>
     </Form>
   );

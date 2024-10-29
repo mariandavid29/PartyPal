@@ -26,12 +26,14 @@ export default function LinkWithIdicator({
         {pathname === href ? (
           <NavigationMenuLink
             data-active
-            className={navigationMenuTriggerStyle()}
+            className={`${navigationMenuTriggerStyle()} text-base font-semibold sm:h-12 sm:px-8 sm:text-lg`}
           >
             {children}
           </NavigationMenuLink>
         ) : (
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink
+            className={`${navigationMenuTriggerStyle()} text-base font-semibold sm:h-12 sm:px-8 sm:text-lg`}
+          >
             {children}
           </NavigationMenuLink>
         )}

@@ -10,7 +10,7 @@ import NewFriendForm from '@/components/client/newFriendForm';
 export default function FriendsLayout({ children }) {
   return (
     <section>
-      <div className='mt-10 flex w-full flex-col items-center justify-center gap-6 sm:mt-20 lg:mt-28'>
+      <div className='mx-auto mt-10 flex w-full flex-col items-center justify-center gap-6 sm:mt-20 lg:mt-28'>
         <NavigationMenu className='w-full max-w-none'>
           <NavigationMenuList className='sm:gap-4'>
             <LinkWithIdicator

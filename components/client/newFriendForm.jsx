@@ -60,7 +60,7 @@ export default function NewFriendForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex w-[350px] items-start justify-between gap-3'
+        className='flex w-full max-w-[350px] items-start justify-between gap-3'
       >
         <FormField
           control={form.control}
@@ -77,12 +77,7 @@ export default function NewFriendForm() {
             </FormItem>
           )}
         />
-        <Button
-          size='lg'
-          type='submit'
-        >
-          Add
-        </Button>
+        <Button type='submit'>Add</Button>
       </form>
     </Form>
   );

@@ -1,3 +1,13 @@
+import { Suspense } from 'react';
+import FriendsList from '@/components/server/friendsList';
+import FriendsListSkeleton from '@/components/skeleton/friendsListSkeleton';
+
 export default function FriendsPage() {
-  return <h2>Salut</h2>;
+  return (
+    <section className='mx-auto mt-10 max-w-screen-xl'>
+      <Suspense fallback={<FriendsListSkeleton />}>
+        <FriendsList query='friends' />
+      </Suspense>
+    </section>
+  );
 }

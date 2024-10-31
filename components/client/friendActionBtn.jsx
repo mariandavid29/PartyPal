@@ -1,15 +1,16 @@
 'use client';
 
 import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
 
 export default function FriendActionBtn({ action, icon, friendshipId }) {
+  const router = useRouter();
   async function onClick() {
     try {
       const res = await fetch(`/api/friends/${friendshipId}/${action}`, {
         method: 'POST',
       });
-      const data = await res.json();
-      console.log(data);
+      router.refresh();
     } catch (error) {
       console.log(error);
     }

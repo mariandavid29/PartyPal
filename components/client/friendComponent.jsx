@@ -9,8 +9,8 @@ export default function FriendComponent({ data, query }) {
     user = data.requester;
   } else if (query === 'sent') {
     user = data.receiver;
-  } else if (query === 'idk') {
-    user = data.idk;
+  } else if (query === 'friends') {
+    user = data;
   }
 
   return (
@@ -25,16 +25,34 @@ export default function FriendComponent({ data, query }) {
         </p>
       </div>
       <div>
-        <FriendActionBtn
-          friendshipId={data.id}
-          action='accept'
-          icon={<Check />}
-        />
-        <FriendActionBtn
-          friendshipId={data.id}
-          action='decline'
-          icon={<X />}
-        />
+        {query === 'received' && (
+          <FriendActionBtn
+            friendshipId={data.id}
+            action='accept'
+            icon={<Check />}
+          />
+        )}
+        {query === 'received' && (
+          <FriendActionBtn
+            friendshipId={data.id}
+            action='decline'
+            icon={<X />}
+          />
+        )}
+        {query === 'friends' && (
+          <FriendActionBtn
+            friendshipId={data.friendshipId}
+            action='remove-friend'
+            icon={<X />}
+          />
+        )}
+        {query === 'sent' && (
+          <FriendActionBtn
+            friendshipId={data.id}
+            action='remove-request'
+            icon={<X />}
+          />
+        )}
       </div>
     </article>
   );

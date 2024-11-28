@@ -1,8 +1,4 @@
-// SHADCN
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-
-//CUSTOM UI
-import DashboardSidebar from '@/components/server/dashboardSidebar';
+import DashboardHeader from '@/components/server/dashboardHeader';
 
 export default function DashboardLayout({
   children,
@@ -10,12 +6,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SidebarProvider>
-      <DashboardSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <main className='mx-auto w-11/12 sm:w-10/12 xl:max-w-screen-xl'>
+      <DashboardHeader />
+      {children}
+    </main>
   );
 }

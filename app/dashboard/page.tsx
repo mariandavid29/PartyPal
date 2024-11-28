@@ -1,3 +1,3 @@
-export default function DashboardTest() {
-  return <h2>esti in dashboard test</h2>;
+export default function DashboardPage() {
+  return <h2>Esti in dashboard</h2>;
 }

@@ -1,12 +1,11 @@
-// CUSTOM UI
-import UserPopover from '../client/userPopover';
-
-// AUTH SES
+// AUTH
 import { auth } from '@/auth';
+import { Session, User } from 'next-auth';
+
+import UserPop from '../client/userPop';
 
 export default async function NavUser() {
-  const session = await auth();
-  const user = session?.user;
+  const { user } = (await auth()) as Session;
 
-  return <UserPopover user={user} />;
+  return <UserPop user={user as User} />;
 }

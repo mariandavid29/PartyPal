@@ -7,7 +7,7 @@ import CustomButton from '@/components/client/customButton';
 
 export default async function Home() {
   return (
-    <main className='mx-auto w-11/12 sm:w-10/12 xl:max-w-screen-xl'>
+    <main className='mx-auto w-11/12 lg:w-10/12 xl:max-w-screen-xl'>
       <LandingHeader />
       <section className='flex min-h-[calc(100vh_-_144px)] flex-col items-start justify-start gap-6 pt-32 sm:pt-40 lg:pt-52 xl:pt-56'>
         <div className='flex flex-col items-start justify-start gap-1 lg:gap-2'>

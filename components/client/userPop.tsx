@@ -1,14 +1,18 @@
 'use client';
 
+// AUTH
+import { User } from 'next-auth';
+
+// ICONS
+import { ChevronsUpDown, LogOut } from 'lucide-react';
+
 // SHADCN
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
@@ -18,21 +22,15 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
-// ICONS
-import { BadgeCheck, ChevronsUpDown, LogOut } from 'lucide-react';
-
-// AUTH TYPE
-import { User } from 'next-auth';
-
 // CUSTOM UI
 import CustomButton from './customButton';
 
+// CUSTOM LOGIC
 import { signOutAction } from '@/actions/authAction';
+import { Separator } from '../ui/separator';
 
-export default function UserPopover({ user }: { user: User | undefined }) {
-  const name = user?.name ?? 'username';
-  const email = user?.email ?? 'email@gmail.com';
-  const image = user?.image ?? undefined;
+export default function UserPop({ user }: { user: User }) {
+  const { name, email, image } = user;
 
   const { isMobile } = useSidebar();
 
@@ -47,14 +45,14 @@ export default function UserPopover({ user }: { user: User | undefined }) {
             >
               <Avatar className='h-8 w-8 rounded-lg'>
                 <AvatarImage
-                  src={image}
-                  alt={name}
+                  src={image as string}
+                  alt={name as string}
                 />
                 <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
               </Avatar>
               <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-semibold'>{name}</span>
-                <span className='truncate text-xs'>{email}</span>
+                <span className='truncate font-semibold'>{name as string}</span>
+                <span className='truncate text-xs'>{name as string}</span>
               </div>
               <ChevronsUpDown className='ml-auto size-4' />
             </SidebarMenuButton>
@@ -69,25 +67,20 @@ export default function UserPopover({ user }: { user: User | undefined }) {
               <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                 <Avatar className='h-8 w-8 rounded-lg'>
                   <AvatarImage
-                    src={image}
-                    alt={name}
+                    src={image as string}
+                    alt={name as string}
                   />
                   <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>{name}</span>
-                  <span className='truncate text-xs'>{email}</span>
+                  <span className='truncate font-semibold'>
+                    {name as string}
+                  </span>
+                  <span className='truncate text-xs'>{email as string}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+
             <DropdownMenuItem>
               <CustomButton
                 variant='link'
